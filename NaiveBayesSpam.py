@@ -40,8 +40,8 @@ def readFiles(path):
             # Print the filepath and the message.
             yield path, message
 
-# Create a DataFrame containing one email per row and an index
-# to keep track of index numbers
+# Create a DataFrame containing one email per row and using the
+# filename as an index
 def dataFrameFromDirectory(path, classification):
     # First, create two empty parallel arrays
     rows = []
