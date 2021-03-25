@@ -57,15 +57,16 @@ def dataFrameFromDirectory(path, classification):
     # Returns a DataFrame with all the read emails
     return DataFrame(rows, index=index)
 
-# Create a data frame to show whether emails are spam or ham
+# Create an empty data frame to populate with the training data
 data = DataFrame({'message': [], 'class': []})
 
-# Add the emails to a list that is either ham or spam
+# Add the training data to the empty data frame with the correct
+# classification
 data = data.append(dataFrameFromDirectory('emails/spam', 'spam'))
 data = data.append(dataFrameFromDirectory('emails/ham', 'ham'))
 
-# Now let's take a look to see what the classifier came up with:
-print(data.tail())
+# Now let's take a peek at the training data to check its format and result
+print(data.head())
 
 # Use a count vectorizer to split messages into a list of words (tokenize
 # them), then toss the results into a Multinomial Naive Bayes classifier.
@@ -91,8 +92,9 @@ while email_in != "quit":
         break
     else:
         # Add the text as a document to the text_list array object, then
-        # tokenize the words in it using transform. Print out the predictions
-        # obtained from the model the text was fit to given the training data
+        # tokenize the words and obtain frequency using transform. Print out
+        # the predictions obtained from the model the text was fit to given
+        # the training data
         text_list.append(email_in)
         text_counts = vectorizer.transform(text_list)
         predictions = classifier.predict(text_counts)
