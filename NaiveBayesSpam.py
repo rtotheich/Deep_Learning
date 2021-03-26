@@ -37,7 +37,7 @@ def readFiles(path):
             # Create a string called message and concatenate in each line with
             # a line return separating it from the next
             message = '\n'.join(lines)
-            # Print the filepath and the message.
+            # Return the filepath and the message.
             yield path, message
 
 # Create a DataFrame containing one email per row and using the
