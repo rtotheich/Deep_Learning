@@ -4,7 +4,7 @@ import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 
-#Creates a sequential network one layer deep
+#Creates a sequential network with a single neuron and one layer deep
 
 model = tf.keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
 
@@ -13,8 +13,7 @@ model = tf.keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
 
 model.compile(optimizer='sgd', loss='mean_squared_error')
 
-# Instantiate two arrays to create a 2D matrix that is 6 x 2 with float --
-# or decimal -- values
+# Instantiate parallel arrays with x and y values
 
 xs = np.array([-1.0, 0.0, 1.0, 2.0, 3.0, 4.0], dtype=float)
 ys = np.array([-2.0, 1.0, 4.0, 7.0, 10.0, 13.0], dtype=float)
