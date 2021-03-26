@@ -48,13 +48,13 @@ def dataFrameFromDirectory(path, classification):
     index = []
     # repeat these actions for each message
     for filename, message in readFiles(path):
-        # Create a dictionary to store message and classification (spam or
+        # Add each message to a dictionary to store classification (spam or
         # ham) for each message (row in DataFrame)
         rows.append({'message': message, 'class': classification})
         # Use the filename as an index
         index.append(filename)
         
-    # Returns a DataFrame with all the read emails
+    # Returns a DataFrame with all the read emails and their classification
     return DataFrame(rows, index=index)
 
 # Create an empty data frame to populate with the training data
