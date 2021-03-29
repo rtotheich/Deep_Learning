@@ -61,21 +61,23 @@ def dataFrameFromDirectory(path, classification):
 data = DataFrame({'message': [], 'class': []})
 
 # Add the training data to the empty data frame with the correct
-# classification
+# classification using the above function
 data = data.append(dataFrameFromDirectory('emails/spam', 'spam'))
 data = data.append(dataFrameFromDirectory('emails/ham', 'ham'))
 
-# Now let's take a peek at the training data to check its format and result
+# Now let's take a peek at the training data frame to check its format and result
 print(data.head())
 
-# Use a count vectorizer to split messages into a list of words (tokenize
-# them), then toss the results into a Multinomial Naive Bayes classifier.
+# Create a count vectozier to tokenize the words in the messages
 vectorizer = CountVectorizer()
-# Fit to a model, and the classifier is ready.
+# Extract tokens to a matrix storing their frequency
 counts = vectorizer.fit_transform(data['message'].values)
 
+# Instantiate a Multinomial Naive Bayes classifier
 classifier = MultinomialNB()
+# Add all the supervised classifications from the dataframe to a document object
 targets = data['class'].values
+# Create a model based on the training data, mapping messages to classifications
 classifier.fit(counts, targets)
 
 # Try some input data!
